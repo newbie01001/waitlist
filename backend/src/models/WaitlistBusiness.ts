@@ -1,20 +1,16 @@
 import mongoose, { Document } from 'mongoose';
 
 export interface IWaitlistBusiness extends Document {
-  name: string;
+  
   email: string;
   businessName: string;
-  businessType: string;
+  businessType: 'Grocery' | 'Bakery' | 'Restaurant' | 'Other';
   location: string;
   createdAt: Date;
 }
 
 const waitlistBusinessSchema = new mongoose.Schema<IWaitlistBusiness>({
-  name: {
-    type: String,
-    required: [true, 'Name is required'],
-    minlength: [2, 'Name must be at least 2 characters long']
-  },
+ 
   email: {
     type: String,
     required: [true, 'Email is required'],
@@ -30,7 +26,7 @@ const waitlistBusinessSchema = new mongoose.Schema<IWaitlistBusiness>({
   businessType: {
     type: String,
     required: [true, 'Business type is required'],
-    enum: ['restaurant', 'bar', 'cafe', 'other']
+    enum: ['Grocery', 'Bakery', 'Restaurant', 'Other']
   },
   location: {
     type: String,

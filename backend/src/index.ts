@@ -2,10 +2,13 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+dotenv.config();
+
 import waitlistRoutes from './routes/waitlistRoutes';
 
 // Load environment variables
-dotenv.config();
+console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
+
 
 // Verify environment variables
 const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASS', 'EMAIL_FROM'];
