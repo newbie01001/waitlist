@@ -5,13 +5,17 @@ import nodemailer from 'nodemailer';
 
 // Email transporter configuration
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: Number(process.env.EMAIL_PORT),
-  secure: false,
+  service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false
+  },
+  secure: true,
+  port: 465,
+  host: 'smtp.gmail.com'
 });
 
 // Send confirmation email
@@ -24,12 +28,20 @@ const sendConfirmationEmail = async (email: string, type: 'user' | 'business') =
     ? 'Thank you for joining the MyReserve waitlist! We\'ll notify you when we launch in your area.'
     : 'Thank you for joining the MyReserve Business waitlist! We\'ll be in touch soon with more information.';
 
-  await transporter.sendMail({
-    from: process.env.EMAIL_FROM,
-    to: email,
-    subject,
-    text,
-  });
+  try {
+    const mailOptions = {
+      from: process.env.EMAIL_FROM,
+      to: email,
+      subject,
+      text,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.response);
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw error;
+  }
 };
 
 export const addUserToWaitlist = async (req: Request, res: Response) => {

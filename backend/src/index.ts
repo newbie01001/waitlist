@@ -7,6 +7,15 @@ import waitlistRoutes from './routes/waitlistRoutes';
 // Load environment variables
 dotenv.config();
 
+// Verify environment variables
+const requiredEnvVars = ['EMAIL_USER', 'EMAIL_PASS', 'EMAIL_FROM'];
+const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+if (missingEnvVars.length > 0) {
+  console.error('Missing required environment variables:', missingEnvVars.join(', '));
+  process.exit(1);
+}
+
 const app = express();
 
 // Middleware
