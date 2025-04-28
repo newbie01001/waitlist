@@ -20,12 +20,16 @@ if (missingEnvVars.length > 0) {
 const app = express();
 
 // Middleware
+
 app.use(cors({
-  origin: ['https://new-six-cyan.vercel.app'],
+  origin: 'https://new-six-cyan.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+  exposedHeaders: ['Content-Length', 'X-Requested-With'],
+  optionsSuccessStatus: 204
 }));
+
 app.use(express.json());
 
 // Routes
