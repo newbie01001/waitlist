@@ -1,6 +1,5 @@
 {
   "name": "myreserve-frontend",
-  "root": "frontend",
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/build"
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "build"
 }
