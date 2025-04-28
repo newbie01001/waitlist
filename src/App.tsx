@@ -19,6 +19,8 @@ import Footer from './components/Footer';
 // Configure axios defaults
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.withCredentials = true; // Add this line for CORS credentials
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'https://new-six-cyan.vercel.app';
 
 function App() {
   return (
