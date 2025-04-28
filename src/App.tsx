@@ -17,7 +17,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 // Configure axios defaults
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+axios.defaults.baseURL = 'https://waitlist-57mz.onrender.com';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.withCredentials = true;
 // Remove this line as it should be handled by the server
