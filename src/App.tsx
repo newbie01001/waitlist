@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import ReactGA from "react-ga4";
 import { theme } from './theme';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -17,11 +18,13 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 // Configure axios defaults
-axios.defaults.baseURL = 'https://waitlist-57mz.onrender.com';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.withCredentials = true;
-// Remove this line as it should be handled by the server
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'https://new-six-cyan.vercel.app';
+
+// Initialize Google Analytics
+ReactGA.initialize("G-CH2Y2KX2YC");
+ReactGA.send({ hitType: "pageview", page: window.location.pathname });
 
 function App() {
   return (

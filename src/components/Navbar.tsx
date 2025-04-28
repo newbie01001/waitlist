@@ -1,65 +1,109 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import React, { useState } from 'react';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Menu,
+  MenuItem,
+  Button,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    handleClose();
+  };
+
+  const navItems = [
+    { label: 'Home', id: 'hero' },
+    { label: 'Shoppers', id: 'shopper-section' },
+    { label: 'Business', id: 'business-section' },
+    { label: 'Why Us', id: 'why-section' },
+    { label: 'About', id: 'about-section' },
+    { label: 'FAQ', id: 'faq-section' },
+    { label: 'Contact', id: 'contact-section' },
+  ];
+
   return (
-    <AppBar position="sticky" elevation={0} sx={{ backgroundColor: 'transparent' }}>
-      <Container maxWidth="lg">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            component={RouterLink}
-            to="/"
-            sx={{
-              flexGrow: 1,
-              textDecoration: 'none',
-              color: 'primary.main',
-              fontWeight: 700,
-            }}
-          >
-            MyReserve
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <ScrollLink
-              to="about"
-              spy={true}
-              smooth={true}
-              duration={500}
-              offset={-70}
+    <AppBar 
+      position={isMobile ? 'fixed' : 'sticky'} 
+      sx={{
+        backgroundColor: 'background.paper',
+        boxShadow: 1,
+      }}
+    >
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Box component="img" src="/logo.png" alt="MyReserve" sx={{ height: 40,borderRadius: '50%'  }} />
+        
+        {isMobile ? (
+          <Box>
+            <IconButton
+              edge="end"
+              color="primary"
+              aria-label="menu"
+              onClick={handleMenu}
             >
-              <Button sx={{ color: 'text.primary' }}>
-                About
-              </Button>
-            </ScrollLink>
-            <ScrollLink
-              to="faqs"
-              spy={true}
-              smooth={true}
-              duration={500}
-              offset={-70}
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
             >
-              <Button sx={{ color: 'text.primary' }}>
-                FAQs
-              </Button>
-            </ScrollLink>
-            <ScrollLink
-              to="contact"
-              spy={true}
-              smooth={true}
-              duration={500}
-              offset={-70}
-            >
-              <Button sx={{ color: 'text.primary' }}>
-                Contact
-              </Button>
-            </ScrollLink>
+              {navItems.map((item) => (
+                <MenuItem 
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                >
+                  {item.label}
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
-        </Toolbar>
-      </Container>
+        ) : (
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            {navItems.map((item) => (
+              <Button
+                key={item.id}
+                color="primary"
+                onClick={() => scrollToSection(item.id)}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </Box>
+        )}
+      </Toolbar>
     </AppBar>
   );
 };
 
-export default Navbar; 
+export default Navbar;
