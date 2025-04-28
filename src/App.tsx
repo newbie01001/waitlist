@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ToastContainer } from 'react-toastify';
@@ -16,6 +16,7 @@ import AboutSection from './components/AboutSection';
 import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import AdminPage from './pages/AdminPage';
 
 // Configure axios defaults
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -31,26 +32,23 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <Navbar />
-        <Hero />
-        <ShopperSection />
-        <BusinessSection />
-        <WhySection />
-        <AboutSection />
-        <FAQSection />
-        <ContactSection />
-        <Footer />
+        <Routes>
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/" element={
+            <>
+              <Navbar />
+              <Hero />
+              <ShopperSection />
+              <BusinessSection />
+              <WhySection />
+              <AboutSection />
+              <FAQSection />
+              <ContactSection />
+              <Footer />
+            </>
+          } />
+        </Routes>
+        <ToastContainer />
       </ThemeProvider>
     </BrowserRouter>
   );
