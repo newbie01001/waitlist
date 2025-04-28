@@ -6,8 +6,6 @@ dotenv.config();
 
 import waitlistRoutes from './routes/waitlistRoutes';
 
-// Load environment variables
-console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
 
 
 // Verify environment variables
