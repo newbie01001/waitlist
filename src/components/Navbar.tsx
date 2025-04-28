@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 
 const Navbar = () => {
   return (
@@ -9,7 +10,7 @@ const Navbar = () => {
         <Toolbar>
           <Typography
             variant="h6"
-            component={Link}
+            component={RouterLink}
             to="/"
             sx={{
               flexGrow: 1,
@@ -21,27 +22,39 @@ const Navbar = () => {
             MyReserve
           </Typography>
           <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button
-              component={Link}
-              to="/about"
-              sx={{ color: 'text.primary' }}
+            <ScrollLink
+              to="about"
+              spy={true}
+              smooth={true}
+              duration={500}
+              offset={-70}
             >
-              About
-            </Button>
-            <Button
-              component={Link}
-              to="/faqs"
-              sx={{ color: 'text.primary' }}
+              <Button sx={{ color: 'text.primary' }}>
+                About
+              </Button>
+            </ScrollLink>
+            <ScrollLink
+              to="faqs"
+              spy={true}
+              smooth={true}
+              duration={500}
+              offset={-70}
             >
-              FAQs
-            </Button>
-            <Button
-              component={Link}
-              to="/contact"
-              sx={{ color: 'text.primary' }}
+              <Button sx={{ color: 'text.primary' }}>
+                FAQs
+              </Button>
+            </ScrollLink>
+            <ScrollLink
+              to="contact"
+              spy={true}
+              smooth={true}
+              duration={500}
+              offset={-70}
             >
-              Contact
-            </Button>
+              <Button sx={{ color: 'text.primary' }}>
+                Contact
+              </Button>
+            </ScrollLink>
           </Box>
         </Toolbar>
       </Container>

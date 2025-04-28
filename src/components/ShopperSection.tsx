@@ -66,13 +66,13 @@ const ShopperSection = () => {
               transition={{ duration: 0.5 }}
             >
               <Typography variant="h2" gutterBottom>
-                Reserve discounted groceries before anyone else.
+              Get fresh groceries at unbeatable prices — and help save the planet.
               </Typography>
               <List>
                 {[
-                  'Save up to 50% on your favorite groceries',
-                  'Rescue food and help the planet',
-                  'Track savings and impact',
+                  'Reserve soon-to-expire items nearby',
+                  'Pick up in-store and save big',
+                  'Track your impact and savings over time',
                 ].map((text, index) => (
                   <ListItem key={index}>
                     <ListItemIcon>
@@ -98,6 +98,16 @@ const ShopperSection = () => {
                   borderRadius: 4,
                 }}
               >
+                 {/* 🎯 Add Form Title Here */}
+    <Typography
+      variant="h5"
+      component="h3"
+      gutterBottom
+      align="center"
+      sx={{ fontWeight: 'bold', mb: 2 }}
+    >
+      Join the Shopper Early Access List
+    </Typography>
                 <form onSubmit={handleSubmit}>
                   <TextField
                     fullWidth

@@ -84,9 +84,10 @@ const BusinessSection = () => {
               </Typography>
               <List>
                 {[
-                  'Clear inventory and reduce losses',
+                  'List near-expiry products quickly',
                   'Attract eco-conscious customers',
                   'Easy-to-use business dashboard',
+                  'Improve your bottom line and reduce waste',
                 ].map((text, index) => (
                   <ListItem key={index}>
                     <ListItemIcon>
@@ -111,7 +112,18 @@ const BusinessSection = () => {
                   p: 4,
                   borderRadius: 4,
                 }}
+                
               >
+                 {/* 🎯 Add Form Title Here */}
+    <Typography
+      variant="h5"
+      component="h3"
+      gutterBottom
+      align="center"
+      sx={{ fontWeight: 'bold', mb: 2 }}
+    >
+      Join the Business Early Access List
+    </Typography>
                 <form onSubmit={handleSubmit}>
                   <TextField
                     fullWidth

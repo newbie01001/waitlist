@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -9,8 +9,13 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useLocation } from 'react-router-dom';
 
 const faqs = [
+  {
+    question: 'What is MyReserve?',
+    answer: 'MyReserve is a platform that allows shoppers to reserve items before they expire. Businesses can post discounts for items nearing their expiration dates, and shoppers can reserve items for in-store pickup. We are currently in beta testing and will be available to the public soon.',
+  },
   {
     question: 'When will MyReserve launch?',
     answer: 'We are planning to launch MyReserve in major cities within the next 3 months. Join our waitlist to be notified when we launch in your area.',
@@ -31,6 +36,16 @@ const faqs = [
 
 const FAQSection = () => {
   const [expanded, setExpanded] = useState<string | false>(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#faqs') {
+      const element = document.getElementById('faqs');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
@@ -38,9 +53,11 @@ const FAQSection = () => {
 
   return (
     <Box
+      id="faqs"
       sx={{
         py: 8,
         background: 'linear-gradient(180deg, #0A1929 0%, #112240 100%)',
+        minHeight: '100vh',
       }}
     >
       <Container maxWidth="md">

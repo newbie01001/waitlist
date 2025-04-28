@@ -11,7 +11,9 @@ import Hero from './components/Hero';
 import ShopperSection from './components/ShopperSection';
 import BusinessSection from './components/BusinessSection';
 import WhySection from './components/WhySection';
+import AboutSection from './components/AboutSection';
 import FAQSection from './components/FAQSection';
+import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 // Configure axios defaults
@@ -39,7 +41,9 @@ function App() {
         <ShopperSection />
         <BusinessSection />
         <WhySection />
+        <AboutSection />
         <FAQSection />
+        <ContactSection />
         <Footer />
       </ThemeProvider>
     </BrowserRouter>
