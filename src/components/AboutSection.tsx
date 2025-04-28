@@ -74,9 +74,9 @@ const AboutSection = () => {
                 </Typography>
                 <Typography color="text.secondary">
                 Businesses list discounted items that are nearing expiration.
-Shoppers browse, reserve online, and pick up at the store.
+                Shoppers browse, reserve online, and pick up at the store.
 
-It's simple: Save Food. Save Money. Save the Planet.
+                It's simple: Save Food. Save Money. Save the Planet.
                 </Typography>
               </Paper>
             </motion.div>
